@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order details</title>
+</head>
+<body>
+<div style="position: relative; height: 1000px; background-image: url(https://www.marketplace.org/wp-content/uploads/2021/01/Books_New-e1611252343470.jpg?fit=2879%2C1619); opacity: 0.7">
+    <div style="position: relative; text-align: center">
+        <h1 style="color: white; font-size: 90px"> LIBRARY </h1>
+    </div>
+    <div style="margin-left: 25%; margin-right: auto; padding: 10px">
+        <form th:action="@{'/'} ">
+            <table style="color: white; border: solid 2px white; font-size: 25px">
+                <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>User</th>
+                    <th>Issue date</th>
+                    <th>Return date</th>
+                    <th th:if="${level == 'librarian'}">Edit</th>
+                    <th th:if="${level == 'librarian'}">Finish</th>
+                    <th th:if="${level == 'librarian'}">Delete</th>
+                <tbody>
+                <tr>
+                    <td th:text="${order.orderID}">order id</td>
+                    <td th:text="${order.user.userFullName}">user that made order</td>
+                    <td th:text="${order.issueDate}">date of issue</td>
+                    <td th:text="${order.returnDate}">date of return</td>
+                    <td th:if="${level == 'librarian'}"><a th:href="@{'edit/' + ${order.orderID}}" style="color: green"> Edit order</a></td>
+                    <td th:if="${level == 'librarian'}"><a th:href="@{'finish/' + ${order.orderID}}" style="color: blue"> Finish order</a></td>
+                    <td th:if="${level == 'librarian'}"><a th:href="@{'delete/' + ${order.orderID}}" style="color: red"> Delete order</a></td>
+                </tr>
+                </tbody>
+                </tr>
+                </thead>
+
+            </table>
+            <br>
+            <form action="/orderslist" method="get">
+                <input type="submit" value="Return to dashhboard" name="Submit"
+                       style="color: white; text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 6px darkBlue; font-size:17px;" />
+            </form>
+    </div>
+</div>
+</body>
+</html>
