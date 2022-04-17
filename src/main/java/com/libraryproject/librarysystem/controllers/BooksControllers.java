@@ -38,7 +38,7 @@ public class BooksControllers {
         return "addnewbook.html";
     }
 
-    @GetMapping("/addthisnewbook")
+    @PostMapping("/addthisnewbook")
     public String addBook(@RequestParam(value = "title") String title,
                           @RequestParam(value = "url") String url,
                           @RequestParam(value = "author") String authorID) {
