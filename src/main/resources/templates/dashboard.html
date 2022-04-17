@@ -3,16 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Books list</title>
+    <style>
+        .main {
+            margin-top: 100px;
+            margin-left: 40%;
+            margin-right: 40%;
+            padding: 10px;
+            padding-bottom: 40px;
+        }
+        @media only screen and (max-width:1400px) {
+            /* For tablets: */
+            .main {
+                margin-left: 35%;
+                margin-right: 35%;
+            }
+        }
+        @media only screen and (max-width:1000px) {
+            /* For tablets: */
+            .main {
+                margin-left: 30%;
+                margin-right: 30%;
+            }
+        }
+        @media only screen and (max-width:800px) {
+            /* For tablets: */
+            .main {
+                margin-left: 22%;
+                margin-right: 22%;
+            }
+        }
+        @media only screen and (max-width:500px) {
+            /* For mobile phones: */
+            .main {
+                margin-left: 15%;
+                margin-right: 15%;
+            }
+        }
+    </style>
 </head>
 <body>
-<div style="position: relative; height: 1000px; background-image: url(https://www.marketplace.org/wp-content/uploads/2021/01/Books_New-e1611252343470.jpg?fit=2879%2C1619); opacity: 0.7">
+<div style="width: 100%; height: 100%; padding-bottom: 300px; background-image: url(https://www.marketplace.org/wp-content/uploads/2021/01/Books_New-e1611252343470.jpg?fit=2879%2C1619); opacity: 0.7">
     <div style="position: relative; text-align: center">
         <h1 style="color: white; font-size: 90px"> LIBRARY </h1>
     </div>
     <div>
         <h1 style="color: white; font-size: 60px; text-align: center">WELCOME TO THE LIBRARY</h1>
     </div>
-    <div style="position: relative; color: white; margin-top: 100px; margin-left: 40%; margin-right: 40%; padding: 10px; padding-bottom: 40px; border: solid white 2px; text-align: center">
+    <div class="main" style="position: relative; color: white; border: solid white 2px; text-align: center">
         <h2 style="font-size: 40px">DASHBOARD</h2>
         <table style="margin: 0 auto">
             <tbody>
