@@ -3,6 +3,7 @@ package com.libraryproject.librarysystem.controllers;
 import com.libraryproject.librarysystem.domain.*;
 import com.libraryproject.librarysystem.repositories.AuthorsRepository;
 import com.libraryproject.librarysystem.repositories.BooksRepository;
+import com.libraryproject.librarysystem.repositories.OrdersRepository;
 import com.libraryproject.librarysystem.repositories.UsersRepository;
 import com.libraryproject.librarysystem.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class BooksControllers {
 
     @Autowired
     private AuthorsRepository authorsRepository;
+
+    @Autowired
+    private OrdersRepository ordersRepository;
 
     @GetMapping("/addnewbook")
     public String bookList(Model model) {
@@ -67,11 +71,13 @@ public class BooksControllers {
         if (user.getAccessLevel() == AccessLevel.LIBRARIAN) {
             System.out.println("It's librarian " + currentUser);
             model.addAttribute("level","librarian");
+            List<Orders> orders = ordersRepository.findAll();
+            long takenCount = orders.stream().filter(o -> o.getBooksList().contains(book)).count();
+            model.addAttribute("takenCount", String.valueOf(takenCount));
         } else {
             System.out.println("It's user " + currentUser);
             model.addAttribute("level","user");
         }
-
 
         model.addAttribute("book", book);
         return "infoonebook.html";
@@ -96,20 +102,6 @@ public class BooksControllers {
         model.addAttribute("book", book);
         return "editbook.html";
     }
-
-    /**
-     * Few changes required, I'm leaving this method commented so you can compare with new one below
-      */
-//    @GetMapping("/editthisbook")
-//    public String editThisBook(Model model, @PathVariable int id, @RequestParam String title, String url) {
-//        Books book = booksRepository.getById(id);
-//        book.setTitle(title);
-//        book.setUrl(url);
-//        booksRepository.save(book);
-//        book = booksRepository.getById(id);
-//        model.addAttribute("bookb", book);
-//        return "infoonebook.html";
-//    }
 
     // As written in the html code, it's needed post mapping, to receive the whole java object
     @PostMapping("/editthisbook")
